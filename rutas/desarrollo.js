@@ -1,8 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const { dirname } = require('path');
 const fs = require('fs')
 const Mensajes = require("../BD/modelos/Mensajes")
 const Confirmaciones = require("../BD/modelos/Confirmaciones")
+
+
+console.log("Desde desarrollo.js  -->> ",dirname,__dirname)
+
 
 router.get('/',(req,res)=>{
     res.render("templates/tarjetaPresentacion")

@@ -6,6 +6,7 @@ const mongoose = require('./BD/mongoose-connect')
 const rutasDesarrollo = require("./rutas/desarrollo")
 const rutasInvitados = require("./rutas/invitados")
 
+console.log("Desde server.js  -->> ",dirname,__dirname)
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
