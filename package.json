@@ -1,0 +1,33 @@
+{
+  "name": "kikoyofe50",
+  "version": "1.0.0",
+  "description": "InvitacionBoda",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganaturifAgs/kikoYofe50.git"
+  },
+  "keywords": [
+    "boda",
+    "oro",
+    "invitacion"
+  ],
+  "author": "Emmanuel Rodriguez Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganaturifAgs/kikoYofe50/issues"
+  },
+  "homepage": "https://github.com/ganaturifAgs/kikoYofe50#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "mongoose": "^8.16.5",
+    "nodemon": "^3.1.10",
+    "vlc-player": "^2.0.0"
+  }
+}
