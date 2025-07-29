@@ -4,6 +4,11 @@ const fs = require('fs')
 const Mensajes = require("../BD/modelos/Mensajes")
 const Confirmaciones = require("../BD/modelos/Confirmaciones")
 
+router.get('/',(req,res)=>{
+    res.render("templates/tarjetaPresentacion")
+})
+
+
 router.get('/:invitado', async (req, res) => {
     try{
         const Invitados = require("../BD/modelos/Invitados")
