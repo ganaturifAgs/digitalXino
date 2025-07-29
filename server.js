@@ -16,6 +16,10 @@ app.use(express.static(__dirname +'/public'));
 
 const _url = "/desarrollo/digital/web/kikoyofe"
 
+app.get(_url+"/", (req,res)=>{
+    res.send("<h1>Agregar el nombre del invitado al final de la URL<h1>")
+})
+
 app.get(_url+'/:invitado', (req, res) => {
     res.render("index",{title:"Bodas de Oro - Kiko y Ofelia",invitado:req.params.invitado,ruta:_url})
 });
