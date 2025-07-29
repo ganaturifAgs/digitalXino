@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('./BD/mongoose-connect')
 const rutasDesarrollo = require("./rutas/desarrollo")
 const rutasInvitados = require("./rutas/invitados")
+const rutasJSyCSS = require("./rutas/js-css")
+const rutasImagenes = require("./rutas/imagenes")
+const rutasFonts = require("./rutas/webFonts")
 
 console.log("Desde server.js  -->> ",__dirname)
 
@@ -22,6 +25,9 @@ app.get(`${_url}/`, (req,res)=>{
 
 app.use(`${_url}/invitacion`,rutasDesarrollo)
 app.use(`${_url}/invitados`,rutasInvitados)
+app.use(`${_url}/jsycss`,rutasJSyCSS)
+app.use(`${_url}/img`,rutasImagenes)
+app.use(`${_url}/webfonts`,rutasFonts)
 
 
 app.listen(80, () => {
