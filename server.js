@@ -14,16 +14,17 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname +'/public'));
 
+const _url = "/desarrollo/digital/web/kikoyofe"
 
-app.get('/:invitado', (req, res) => {
-    res.render("index",{title:"Bodas de Oro - Kiko y Ofelia",invitado:req.params.invitado})
+app.get(_url+'/:invitado', (req, res) => {
+    res.render("index",{title:"Bodas de Oro - Kiko y Ofelia",invitado:req.params.invitado,ruta:_url})
 });
 
-app.get("/audioplayer",(req,res)=>{
+app.get(_url+"/audioplayer",(req,res)=>{
     res.render("templates/audioPlayer");
 })
 
-app.get('/audioplayer/play', (req, res) => {
+app.get(_url+'/audioplayer/play', (req, res) => {
     const range = req.headers.range
     const videoPath = `audio/ooooooooofeliaaaaaa.mp3`;
     const videoSize = fs.statSync(videoPath).size
@@ -46,7 +47,7 @@ app.get('/audioplayer/play', (req, res) => {
 })
 
 
-app.post("/confirmacion/nueva",async (req,res)=>{
+app.post(_url+"/confirmacion/nueva",async (req,res)=>{
     try{
         const newId = await Confirmaciones.find({},{_id:1})
         let _id = newId.pop()._id+1
@@ -60,13 +61,13 @@ app.post("/confirmacion/nueva",async (req,res)=>{
     }
 })
 
-app.get("/confirmacion/:invitado",async (req,res)=>{
+app.get(_url+"/confirmacion/:invitado",async (req,res)=>{
     let inv = req.params.invitado
     const mensa = await Confirmaciones.findOne({invitado:inv})
     res.json({success:mensa === null  ? true:false, msg:mensa === null ? "ok":"Usted ya habia confirmado su asistencia"})
 })
 
-app.post("/mensajes/nuevo",async (req,res)=>{
+app.post(_url+"/mensajes/nuevo",async (req,res)=>{
     try{
         const newId = await Mensajes.find({},{_id:1})
         let _id = newId.pop()._id+1
@@ -80,7 +81,7 @@ app.post("/mensajes/nuevo",async (req,res)=>{
     }
 })
 
-app.get("/mensajes/:invitado",async (req,res)=>{
+app.get(_url+"/mensajes/:invitado",async (req,res)=>{
     let inv = req.params.invitado
     const mensa = await Mensajes.find({invitado:inv})
     res.json({success:mensa.length >= 2  ? false:true,msg:mensa.length >=2 ? "Este invitado ya envio las 2 felicitaciones posibles":"ok"})
@@ -88,5 +89,5 @@ app.get("/mensajes/:invitado",async (req,res)=>{
 
 
 app.listen(80, () => {
-    console.log('Servidor iniciado en http://localhost:80');
+    console.log('Servidor iniciado en http://localhost/'+_url);
 });

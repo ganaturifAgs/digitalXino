@@ -28,7 +28,6 @@ $(()=>{
      })
 
     $(".iconoUbi div").on("click",e=>{
-                    console.log($(e.currentTarget).attr("id"))
             let url = $(e.currentTarget).attr("id")==="icon2" ? "https://www.google.com/maps/dir//24.0251083,-104.6362673/@24.025023,-104.6361338,76m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D":"https://www.google.com/maps/dir//24.0360991,-104.6217199/@24.0361461,-104.6216626,117m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D"
             window.open(url,"_blank")
     })
