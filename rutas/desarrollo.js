@@ -24,7 +24,7 @@ router.get('/:invitado', async (req, res) => {
 
 
 
-router.get("/audioplayer",(req,res)=>{
+router.get("/audioplayer/plantilla",(req,res)=>{
     res.render("../templates/audioPlayer");
 })
 
