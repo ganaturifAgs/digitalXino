@@ -5,11 +5,16 @@ const Mensajes = require("../BD/modelos/Mensajes")
 const Confirmaciones = require("../BD/modelos/Confirmaciones")
 
 router.get('/:invitado', async (req, res) => {
-    const Invitados = require("../BD/modelos/Invitados")
-    let encontrado = await Invitados.findOne({nombre:req.params.invitado})
-    if(!encontrado) res.send({success:false,msg:"Lo sentimos, pero usted no es un invitado del evento"})
+    try{
+        const Invitados = require("../BD/modelos/Invitados")
+        let encontrado = await Invitados.findOne({nombre:req.params.invitado})
+        if(!encontrado) res.send({success:false,msg:"Lo sentimos, pero usted no es un invitado del evento"})
     
-    res.render("index",{title:"Bodas de Oro - Kiko y Ofelia",invitado:encontrado,ruta:"/desarrollo"})
+        res.render("index",{title:"Bodas de Oro - Kiko y Ofelia",invitado:encontrado,ruta:"/desarrollo"})
+        }catch(error){
+            res.send(error)
+            console.log(error)
+        }   
 });
 
 

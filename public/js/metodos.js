@@ -69,7 +69,7 @@ $(()=>{
                 return false
             }
             datos["mensaje"]= msg
-            $.post("/mensajes/nuevo",datos).done(r=>{
+            $.post("mensajes/nuevo",datos).done(r=>{
                 let $ventana = $popup(r.msg)
                 $ventana.append($btnOk("regresar").on("click",e=>{ $ventana.css("display","none"); $("#textoEditable").html("")  }))
                 $("body").append($ventana)
