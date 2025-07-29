@@ -1,6 +1,11 @@
 $(()=>{
 
     document.getElementById('year').textContent = new Date().getFullYear();
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+                                text: location.href,
+                                width: 256,
+                                height: 256,
+                        });
     let fecha =  new Date().toLocaleString()
     let datos = {invitado:$("#invitado").html(),fecha:fecha}
     localStorage.setItem("cliente",JSON.stringify(datos))
@@ -11,11 +16,15 @@ $(()=>{
     
     $(".btn-confirmar div").on("click",e=>{
         $.get(`confirmacion/${datos.invitado}`).done(r=>{ 
-            if(!r.success){ alert(r.msg); return r.success;}
-            $.post('/confirmacion/nueva',datos).done(r=>{
+            if(!r.success){ alert(r.msg); $("#qrcode").removeClass("ocultar"); return r.success;}
+            $.post('confirmacion/nueva',datos).done(r=>{
                 let $intro = $(".intro")
                 $intro.css({"display":"block","opacity":1,"z-index":101})
-                $intro.html($popup(r.msg).append($btnOk("Aceptar").on("click",(e)=>{$( $intro.css({"display":"none","opacity":0,"z-index":0}))})))
+                $intro.html($popup(r.msg).append($btnOk("Aceptar").on("click",(e)=>{
+                    $($intro.css({"display":"none","opacity":0,"z-index":0}))
+                    $("#qrcode").removeClass("ocultar")
+                    
+                })))
             })
         })
     })

@@ -2,7 +2,7 @@
 <%- include('templates/audioplayer',{_url:ruta}) %>
 <div class="sonido"><i id="suena" class="fas fa-volume-high fa-2x"></i></div>
 <div class="content">
-    <div class="intro"> <strong id="invitado"><%= invitado %></strong> <br>Invitación a<br><span style="font-size: 50px;">Nuestra Boda de Oro</span><div class="btn-entrar">ACCESO</div></div>
+    <div class="intro"> <strong id="invitado"><%= invitado.nombre %></strong> <br>Invitación a<br><span style="font-size: 50px;">Nuestra Boda de Oro</span><div class="btn-entrar">ACCESO</div></div>
     
     <div id="marco">    
         <div class="nombres"> Francisco</div> <div class="nombres y"> y </div> <div class="nombres">Ofelia </div>
@@ -13,13 +13,14 @@
         <div class="fecha"> <div class="dia">SÁBADO</div>    <div class="num">16</div>            <div class="mes">AGOSTO</div>        </div>
         
 
-        <div class="titulo">- UBICACIONES -</div>
+        <div class="titulo"><img src="/img/tulipanIzq.png"> UBICACIONES <img src="/img/tulipanDer.png"></div>
         <div class="ubi templo">
             <div class="subtitle">MISA</div>
             <i class="fa-solid fa-church fa-7x"></i>
             <div class="enlinea texto">
                 <div class="ubicacion" id="templo">Parroquia de Santa Teresita del niño Jesús. Colonia Emiliano Zapata</div>
                 <div class="hora">14:00 hrs</div>
+                <div class="hora-am-pm">para los del conalep 2pm</div>
                 <div class="iconoUbi"><div id="icon1"><i class="fas fa-location-dot fa-3x fa-bounce"></i></div>como llegar</div>
             </div>   
         </div>
@@ -28,24 +29,27 @@
             <div class="subtitle">RECEPCIÓN</div>
             <i class="fa-solid fa-champagne-glasses fa-7x"></i>
             <div class="enlinea texto">
-                <div class="ubicacion" id="finca">Finca san Joaquin. Catarino Herrera 208-B. Colonia J. Guadalupe Rodriguez</div>
+                <div class="ubicacion" id="finca">Finca San Joaquin. Catarino Herrera 208-B. Colonia J. Guadalupe Rodríguez</div>
                 <div class="hora">16:00 hrs</div>
+                <div class="hora-am-pm">para los del conalep 4pm</div>
                 <div class="iconoUbi"><div id="icon2"><i class="fas fa-map-pin fa-3x fa-bounce"></i></div>como llegar </div>
             </div>
         </div>
 
-<div class="titulo">- FELICITALOS -</div>
-<div class="mensaje">
-    <div id="textoEditable" contenteditable="true" >Escriba aqui su mensaje</div>
-</div>
-<div id="contador">Quedan:<span id="quedan">300</span> caracteres</div>
-            <div id="enviar">Enviar</div>
-                <p class="teEsperamos">
-                    ¡Esperamos contar con tu presencia para compartir este día tan especial!
-                </p>
-            <div class="subtitle btn-confirmar">
-                <div>Confirmar Asitencia</div>
-            </div>
+<div class="titulo"><img src="/img/tulipanIzq.png"> FELICITALOS <img src="/img/tulipanDer.png"></div>
+    <div class="mensaje">
+        <div id="textoEditable" contenteditable="true" >Escriba aqui su mensaje</div>
     </div>
+    <div id="contador">Quedan:<span id="quedan">300</span> caracteres</div>
+    <div id="enviar">Enviar</div>
+
+
+    <p class="teEsperamos"> ¡Esperamos contar con tu presencia para compartir este día tan especial!</p>
+    <div class="subtitle btn-confirmar">
+            <div>Confirmar Asitencia</div>
+    </div>
+    <div id="qrcode" class="qr ocultar"></div>
+
+</div>  
 </div>
 <%- include('templates/pies',{corp:'Xino-Corp'}) %>

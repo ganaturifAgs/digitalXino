@@ -84,13 +84,13 @@ body{
 header>div{
     position: fixed;
     top:0;
-    width: calc(100vw - 40%);
+    width: calc(100vw - 39%);
     border-top:4px double saddlebrown;
     border-left:4px double saddlebrown;
     border-right:4px double saddlebrown;
     margin-top:16px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 19.5%;
+    margin-right: 20.5%;
     
     background-color: rgba(0,0,0,0.8);
     color:white;
@@ -107,9 +107,23 @@ header>div{
     z-index:99;
 }
 
+#countdown{
+    font-family: 'GOTHIC' ;
+    font-size:0.5em;
+     margin-top:5px;
+}
+
+#countTipos{
+    font-family: 'GOTHIC' ;
+    font-size:0.3em;
+     margin-top:1px;
+     letter-spacing: 1.2em;
+     margin-left: 7em;;
+}
+
 #marco{
     position: absolute;
-    top: 70px;
+    top: 104px;
     width: calc(100vw - 40%);
     border-bottom:4px double saddlebrown;
     border-left:4px double saddlebrown;
@@ -185,11 +199,16 @@ text-shadow: 3px 2px 5px gray
     padding: 10px 0px;
     font-weight: bold;
 }
+.titulo > img{
+   width: 60px;
+    padding: 0px 15px 0px 15px;
+    margin: -5px 0px -7px 0px;
+}
 
 
 .ubi{
     width: 80%;
-    border: 1px solid gray;
+    border: 4px double gray;
     border-radius: 5px;
     background-color:rgba(255,255,255,0.8);
     color:rgb(50, 57, 65);
@@ -235,6 +254,9 @@ text-shadow: 3px 2px 5px gray
     font-weight: bold;
     font-size: 25px;
 }
+.hora-am-pm{
+    font-size: 10px;
+}
 
 .icon1 i{
     text-shadow: 2px 2px 1px gray;;
@@ -258,7 +280,7 @@ text-shadow: 3px 2px 5px gray
     margin-top: 2em;
 }
 .btn-confirmar div{
-    background:#8d2a00; 
+    background:#1e56cf; 
     color:#fff; 
     padding: 12px 28px; 
     border-radius: 6px; 
@@ -348,7 +370,13 @@ footer{
     z-index: 110;
     cursor: pointer;
 }
-
+.qr{
+    display: flex;
+    justify-content: center;
+}
+.ocultar{
+    display:none;
+}
 
 
 @keyframes whats{
