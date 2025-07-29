@@ -6,7 +6,7 @@ const Mensajes = require("../BD/modelos/Mensajes")
 const Confirmaciones = require("../BD/modelos/Confirmaciones")
 
 
-console.log("Desde desarrollo.js  -->> ",dirname(),__dirname)
+console.log("Desde desarrollo.js  -->> ",__dirname)
 
 
 router.get('/',(req,res)=>{
