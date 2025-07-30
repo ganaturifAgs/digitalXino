@@ -50,7 +50,7 @@ router.get('/invitar/:invitado', async (req, res) => {
             <script>
                 function copiar(txt){
                     const textArea = document.createElement("textarea");
-                    textArea.value = txt;
+                    textArea.value = txt.replaceAll(" ","%20");
                     document.body.appendChild(textArea);
                     textArea.select();
                     document.execCommand("copy");
