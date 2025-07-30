@@ -33,6 +33,8 @@ body{
     margin: 0;
     padding: 0;
     background-color: beige;
+    overflow: hidden;
+    overflow-y: auto;  
 }
 .content{
     position: relative;
@@ -43,8 +45,7 @@ body{
     padding: 0; 
     margin: 0;
     text-align: center;
-    overflow: hidden;
-    overflow-y: auto;   
+   
 }
 .intro{
     font-family: 'EXMOUTH';
@@ -291,7 +292,8 @@ text-shadow: 3px 2px 5px gray
 
 
 footer{
-    position: relative;
+    position: fixed;
+    bottom:0;
     width: 100%;
     background-color: #222;
     color: white;

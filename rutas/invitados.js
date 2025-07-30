@@ -30,7 +30,8 @@ router.get('/invitar/:invitado', async (req, res) => {
         let datos={_id:_id,nombre:req.params.invitado,url:`https://ganaturideags.com/desarrollo/invitacion/${req.params.invitado}`}
         const nuevoInvitado = new Invitados(datos);
         const invitadoGuardado = await nuevoInvitado.save();
-        res.status(201).json(invitadoGuardado.url);
+        let linkInvitado = `<a href="${invitadoGuardado.url}"><h2>${invitadoGuardado.url}</h2></a>`
+        res.status(201).send(linkInvitado);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
