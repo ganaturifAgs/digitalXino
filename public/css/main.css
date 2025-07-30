@@ -33,19 +33,19 @@ body{
     margin: 0;
     padding: 0;
     background-color: beige;
-    overflow: hidden;
-    overflow-y: auto;  
+    overflow-y: hidden;
 }
 .content{
     position: relative;
     background-image:url('../../desarrollo/img/fondo');
     background-size: cover;
     background-position: center;
-    min-height: 100vh; 
+    height: 93vh; 
     padding: 0; 
-    margin: 0;
+    margin-bottom: 52px;
     text-align: center;
-   
+    overflow-x: hidden;
+    overflow-y:scroll;  
 }
 .intro{
     font-family: 'EXMOUTH';
@@ -292,8 +292,8 @@ text-shadow: 3px 2px 5px gray
 
 
 footer{
-    position: fixed;
-    bottom:0;
+    position: relative;
+    bottom: 46px;
     width: 100%;
     background-color: #222;
     color: white;
