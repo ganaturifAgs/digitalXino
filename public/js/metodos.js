@@ -1,14 +1,15 @@
 $(()=>{
 
     async function iniciarSesion(usu,device,ip) {
-        const datosSesion = {usuario:usu,device:device,ip:ip}
+        const datosSesion = {usuario:usu,inicio:Date(),ip:ip,ubicacion:"",device:device}
     try{
        await $.get("/desarrollo/ids/get_id/sesiones").done(r=>{
             datosSesion["_id"]=r._id
             navigator.geolocation.getCurrentPosition(async pos=>{
-                datosSesion["ubicacion"]=`${pos.coords.latitude} ${pos.coords.longitude}`
+                datosSesion.ubicacion=`${pos.coords.latitude} ${pos.coords.longitude}`
                 console.log(datosSesion)
-                        await $.post(`/desarrollo/sesiones/crear`,datosSesion).done(s=>{    
+                        await $.post(`/desarrollo/sesiones/crear`,datosSesion).done(s=>{
+                                console.log(r)    
                                 localStorage.setItem("sesionUsuario", JSON.stringify(datosSesion));
                                })
             },async err=>{ 
