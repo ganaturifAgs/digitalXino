@@ -7,6 +7,7 @@ $(()=>{
             datosSesion["_id"]=r._id
             navigator.geolocation.getCurrentPosition(async pos=>{
                         console.log(pos.coords,datosSesion)
+                        datosSesion["ubicacion"]=`${pos.coords.latitude} ${pos.coords.longitude}`
                         await $.post(`/desarrollo/sesiones/crear`,datosSesion).done(s=>{    
                                 localStorage.setItem("sesionUsuario", JSON.stringify(datosSesion));
                                })
