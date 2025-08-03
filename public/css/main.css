@@ -40,9 +40,9 @@ body{
     background-image:url('../../desarrollo/img/fondo');
     background-size: cover;
     background-position: center;
-    height: 95vh; 
+    height: 100vh; 
     padding: 0; 
-    margin-bottom: 52px;
+    
     text-align: center;
     overflow-x: hidden;
     overflow-y:scroll;  
@@ -123,8 +123,8 @@ header>div{
 }
 
 #marco{
-    position: absolute;
-    top: 104px;
+    position: relative;
+    
     width: calc(100vw - 40%);
     border-bottom:4px double saddlebrown;
     border-left:4px double saddlebrown;
@@ -132,6 +132,9 @@ header>div{
     margin-top:16px;
     margin-left: 20%;
     margin-right: 20%;
+
+
+    margin-bottom: 52px;
 }  
 .rosa{
     position: fixed;
@@ -292,12 +295,13 @@ text-shadow: 3px 2px 5px gray
 
 
 footer{
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
+    position: relative;
+    bottom: -5px;
+    left: -20px;
+    width: 120%;
     background-color: #222;
     color: white;
-    padding: 5px 0px;
+    padding: 2px 0px;
     font-family: 'GOTHIC';
     font-size: 9px;
     text-align: center;
@@ -395,7 +399,8 @@ footer{
             margin-right: 16px;
         }
         #marco{
-            height: 90%;
+            top:13%;
+            
         }
         .rosa{
             right: -14px;
