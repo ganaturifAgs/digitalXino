@@ -25,41 +25,47 @@ router.get('/:id', async (req, res) => {
 
 router.get('/invitar/:invitado', async (req, res) => {
     try {
-        const newId = await Invitados.find({},{_id:1})
-        let _id = newId.pop()._id+1
-        let datos={_id:_id,nombre:req.params.invitado,url:`https://ganaturideags.com/desarrollo/invitacion/${req.params.invitado}`}
-        const nuevoInvitado = new Invitados(datos);
-        const invitadoGuardado = await nuevoInvitado.save();
-        let codigo=`<div class="todo"><span>Invitación generada con exito para <b>${invitadoGuardado.nombre}</b></span>
-                    <span><a href="${invitadoGuardado.url}" target="_blank">Ver</a></span><span onclick="copiar('${invitadoGuardado.url}')">Copiar</span></div> 
-                    <style>
-                    .todo{
-                        position:absolute;
-                        font-size:15px;
-                        font-family:Arial;
-                        top:50%;
-                        margin: 0px 20%;
-                        border-bottom:4px double black;                        
-                    }
-                    .todo span{
-                        padding:0px 15px;  
-                        cursor:pointer;   
-                        font-weight: bold;
+        const _getID = require("./ids")
+        console.log(_getID[1])
+        let _id;
+        _getID[1]("invitados").then(async _dat=>{
+             _id=_dat["invitados"]+1
+        
+   
+            let datos={_id:_id,nombre:req.params.invitado,url:`https://ganaturideags.com/desarrollo/invitacion/${req.params.invitado}`}
+            const nuevoInvitado = new Invitados(datos);
+            const invitadoGuardado = await nuevoInvitado.save();
+            let codigo=`<div class="todo"><span>Invitación generada con exito para <b>${invitadoGuardado.nombre}</b></span>
+                        <span><a href="${invitadoGuardado.url}" target="_blank">Ver</a></span><span onclick="copiar('${invitadoGuardado.url}')">Copiar</span></div> 
+                        <style>
+                        .todo{
+                            position:absolute;
+                            font-size:15px;
+                            font-family:Arial;
+                            top:50%;
+                            margin: 0px 20%;
+                            border-bottom:4px double black;                        
                         }
-                    </style>
-            <script>
-                function copiar(txt){
-                    const textArea = document.createElement("textarea");
-                    textArea.value = txt.replaceAll(" ","%20");
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(textArea);
-                    alert('Ell link de la invitación fue copiado al portapapeles')
-                }
-            </script>
-            `
-        res.status(201).send(codigo);
+                        .todo span{
+                            padding:0px 15px;  
+                            cursor:pointer;   
+                            font-weight: bold;
+                            }
+                        </style>
+                <script>
+                    function copiar(txt){
+                        const textArea = document.createElement("textarea");
+                        textArea.value = txt.replaceAll(" ","%20");
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(textArea);
+                        alert('Ell link de la invitación fue copiado al portapapeles')
+                    }
+                </script>
+                `
+            res.status(201).send(codigo);
+        })
     } catch (err) {
         res.status(400).json({ error: err.message });
     }

@@ -57,9 +57,6 @@ router.get('/audioplayer/play', (req, res) => {
 
 router.post("/confirmacion/nueva",async (req,res)=>{
     try{
-        const newId = await Confirmaciones.find({},{_id:1})
-        let _id = newId.pop()._id+1
-        req.body["_id"]=_id
         const nueva = new Confirmaciones(req.body)
         await nueva.save()
         res.json({success:true,msg:"Se ha confirmado su asistencia con exito. Y generado su código QR"})
@@ -77,9 +74,9 @@ router.get("/confirmacion/:invitado",async (req,res)=>{
 
 router.post("/mensajes/nuevo",async (req,res)=>{
     try{
-        const newId = await Mensajes.find({},{_id:1})
+        /*const newId = await Mensajes.find({},{_id:1})
         let _id = newId.pop()._id+1
-        req.body["_id"]=_id
+        req.body["_id"]=_id*/
         const nuevo = new Mensajes(req.body)
         await nuevo.save()
         res.json({success:true,msg:"Su mensaje se envio a los novios correctamente."})

@@ -1,5 +1,41 @@
 $(()=>{
 
+    async function iniciarSesion(usu,device,ip) {
+        const datosSesion = {usuario:usu,device:device,ip:ip}
+    try{
+       await $.get("/desarrollo/ids/get_id/sesiones").done(r=>{
+            datosSesion["_id"]=r._id
+            navigator.geolocation.getCurrentPosition(async pos=>{
+                        console.log(pos.coords,datosSesion)
+                        await $.post(`/desarrollo/sesiones/crear`,datosSesion).done(s=>{    
+                                localStorage.setItem("sesionUsuario", JSON.stringify(datosSesion));
+                               })
+            },async err=>{ 
+                      await $.post(`/desarrollo/sesiones/crear`,datosSesion).done(s=>{  
+                                localStorage.setItem("sesionUsuario", JSON.stringify(datosSesion));
+                        })
+
+            });
+            })
+        } catch (error) {
+            console.log("Error al iniciar sesión:", error);
+        }
+    }
+
+
+
+    // Llama a iniciarSesion cuando el usuario hace clic en el botón "Entrar"
+    $(".btn-entrar").on("click", async event => {
+        $(".intro").animate({opacity:0,display:"none","z-index":0},500,'linear',elem=>{                   
+                $("#ufemmia")[0].play()
+            })
+        const usuario = $("#invitado").html();
+        const device = navigator.userAgent;
+        const ip = await $.get("https://api.ipify.org?format=json").then(r => r.ip);
+        await iniciarSesion(usuario,device,ip);
+    });
+
+
     document.getElementById('year').textContent = new Date().getFullYear();
     var qrcode = new QRCode(document.getElementById("qrcode"), {
                                 text: location.href,
@@ -11,30 +47,32 @@ $(()=>{
     localStorage.setItem("cliente",JSON.stringify(datos))
 
 
-    let $popup = (msg)=>{ return  $("<div>").html(msg).addClass("popup")}
-    let $btnOk = (texto)=>{  return $("<div>").html(texto).addClass("btnOk")}
     
+
+
+let $popup = (msg)=>{ return  $("<div>").html(msg).addClass("popup")}
+let $btnOk = (texto)=>{  return $("<div>").html(texto).addClass("btnOk")}
+
     $(".btn-confirmar div").on("click",e=>{
         $.get(`confirmacion/${datos.invitado}`).done(r=>{ 
             if(!r.success){ alert(r.msg); $("#qrcode").removeClass("ocultar"); return r.success;}
-            $.post('confirmacion/nueva',datos).done(r=>{
-                let $intro = $(".intro")
-                $intro.css({"display":"block","opacity":1,"z-index":101})
-                $intro.html($popup(r.msg).append($btnOk("Aceptar").on("click",(e)=>{
-                    $($intro.css({"display":"none","opacity":0,"z-index":0}))
-                    $("#qrcode").removeClass("ocultar")
+            $.get("/desarrollo/ids/get_id/confirmaciones").done(r=>{
+                datos["_id"]=r._id
+                $.post('confirmacion/nueva',datos).done(r=>{
+                    let $intro = $(".intro")
+                    $intro.css({"display":"block","opacity":1,"z-index":101})
+                    $intro.html($popup(r.msg).append($btnOk("Aceptar").on("click",(e)=>{
+                        $($intro.css({"display":"none","opacity":0,"z-index":0}))
+                        $("#qrcode").removeClass("ocultar")
                     
-                })))
-            })
+                    })))
+                })
+            }) // ids
         })
     })
 
   
-    $(".btn-entrar").on("click",event=>{
-            $(".intro").animate({opacity:0,display:"none","z-index":0},500,'linear',elem=>{                   
-                $("#ufemmia")[0].play()
-            })
-     })
+  
 
     $(".iconoUbi div").on("click",e=>{
             let url = $(e.currentTarget).attr("id")==="icon2" ? "https://www.google.com/maps/dir//24.0251083,-104.6362673/@24.025023,-104.6361338,76m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D":"https://www.google.com/maps/dir//24.0360991,-104.6217199/@24.0361461,-104.6216626,117m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D"
@@ -68,11 +106,16 @@ $(()=>{
                         alert("No ha escrito ningun mensaje")
                 return false
             }
-            datos["mensaje"]= msg
-            $.post("mensajes/nuevo",datos).done(r=>{
-                let $ventana = $popup(r.msg)
-                $ventana.append($btnOk("regresar").on("click",e=>{ $ventana.css("display","none"); $("#textoEditable").html("")  }))
-                $("body").append($ventana)
+
+
+            $.get("/desarrollo/ids/get_id/mensajes").done(r=>{
+                datos["_id"]=r._id
+                datos["mensaje"]= msg
+                $.post("mensajes/nuevo",datos).done(r=>{
+                    let $ventana = $popup(r.msg)
+                    $ventana.append($btnOk("regresar").on("click",e=>{ $ventana.css("display","none"); $("#textoEditable").html("")  }))
+                    $("body").append($ventana)
+                })
             })
         })
     })

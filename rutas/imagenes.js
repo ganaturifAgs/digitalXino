@@ -19,6 +19,10 @@ router.get('/fondo', (req, res) => {
 router.get('/desenfoque.jpg', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/img/desenfoque.jpg'))
 })
+router.get('/favicon.png', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/favicon.png'))
+})
+
 
 
 module.exports = router

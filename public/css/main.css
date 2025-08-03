@@ -40,7 +40,7 @@ body{
     background-image:url('../../desarrollo/img/fondo');
     background-size: cover;
     background-position: center;
-    height: 93vh; 
+    height: 95vh; 
     padding: 0; 
     margin-bottom: 52px;
     text-align: center;
@@ -292,8 +292,8 @@ text-shadow: 3px 2px 5px gray
 
 
 footer{
-    position: relative;
-    bottom: 46px;
+    position: fixed;
+    bottom: 0px;
     width: 100%;
     background-color: #222;
     color: white;
@@ -305,6 +305,7 @@ footer{
 
 .popup{
     position:absolute;
+    top:0px;
     width: 300px;
     background-color: rgba(0,0,0,0.7);
     color:white;
@@ -392,6 +393,9 @@ footer{
             width: calc(100vw - 40px);
             margin-left: 16px;
             margin-right: 16px;
+        }
+        #marco{
+            height: 90%;
         }
         .rosa{
             right: -14px;
